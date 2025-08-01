@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Signup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="form-container sign-in-container">
+      <h1>Sign In</h1>
+      <div style="margin: 20px 0;">
+        <button>G</button>
+        <button>F</button>
+        <button>In</button>
+      </div>
+      <span>or use your email password</span>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <a href="#" class="forgot-password">Forgot Your Password?</a>
+      <button class="main-button">SIGN IN</button>
+    </div>
+
+    <div class="form-container sign-up-container">
+      <h1>Create Account</h1>
+      <div style="margin: 20px 0;">
+        <button>G</button>
+        <button>F</button>
+        <button>In</button>
+      </div>
+      <span>or use your email for registration</span>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button class="main-button">SIGN UP</button>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1 style="margin-left: -150px; text-align: left; width: 100%;">Welcome Back!</h1>
+          <p style="margin-left: -150px; text-align: left; width: 100%;">Enter your personal details to use all of site features</p>
+          <button onclick="toggleForm()">SIGN IN</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Register with your personal details to use all of our features</p>
+          <button onclick="toggleForm()">SIGN UP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('container');
+    function toggleForm() {
+      container.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
