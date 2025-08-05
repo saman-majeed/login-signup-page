@@ -1,47 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login / Signup</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <div class="container" id="container">
+    <div class="mobile-toggle">
+      <button id="mobileToggle" onclick="toggleMobileForm()">Switch to Sign Up</button>
+    </div>
+
+    <!-- Sign In -->
     <div class="form-container sign-in-container">
       <h1>Sign In</h1>
-      <div style="margin: 20px 0;">
-        <button>G</button>
-        <button>F</button>
-        <button>In</button>
-      </div>
       <span>or use your email password</span>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <div class="input-container">
+        <input type="email" id="signin-email" placeholder="Email" />
+        <span class="error-message" id="signin-email-error"></span>
+      </div>
+      <div class="input-container">
+        <div class="password-input-wrapper">
+          <input type="password" id="signin-password" placeholder="Password" />
+          <button type="button" class="password-toggle" id="signin-password-toggle">
+            <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg class="eye-off-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <span class="error-message" id="signin-password-error"></span>
+      </div>
       <a href="#" class="forgot-password">Forgot Your Password?</a>
-      <button class="main-button">SIGN IN</button>
+      <button class="main-button" id="signin-btn">SIGN IN</button>
     </div>
 
+    <!-- Sign Up -->
     <div class="form-container sign-up-container">
       <h1>Create Account</h1>
-      <div style="margin: 20px 0;">
-        <button>G</button>
-        <button>F</button>
-        <button>In</button>
-      </div>
       <span>or use your email for registration</span>
-      <input type="text" placeholder="Name" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button class="main-button">SIGN UP</button>
+      <div class="input-container">
+        <input type="text" id="signup-name" placeholder="Name" />
+        <span class="error-message" id="signup-name-error"></span>
+      </div>
+      <div class="input-container">
+        <input type="email" id="signup-email" placeholder="Email" />
+        <span class="error-message" id="signup-email-error"></span>
+      </div>
+      <div class="input-container">
+        <div class="password-input-wrapper">
+          <input type="password" id="signup-password" placeholder="Password" />
+          <button type="button" class="password-toggle" id="signup-password-toggle">
+            <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg class="eye-off-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <span class="error-message" id="signup-password-error"></span>
+        <div class="password-strength" id="password-strength">
+          <div class="strength-bar">
+            <div class="strength-fill" id="strength-fill"></div>
+          </div>
+          <span class="strength-text" id="strength-text">Password Strength</span>
+        </div>
+      </div>
+      <button class="main-button" id="signup-btn">SIGN UP</button>
     </div>
 
+    <!-- Overlay -->
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-left">
-          <h1 style="margin-left: -150px; text-align: left; width: 100%;">Welcome Back!</h1>
-          <p style="margin-left: -150px; text-align: left; width: 100%;">Enter your personal details to use all of site features</p>
+          <h1>Welcome Back!</h1>
+          <p>Enter your personal details to use all of site features</p>
           <button onclick="toggleForm()">SIGN IN</button>
         </div>
         <div class="overlay-panel overlay-right">
@@ -53,10 +95,311 @@
     </div>
   </div>
 
+  <!-- Appwrite CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.1"></script>
+
   <script>
     const container = document.getElementById('container');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const signInContainer = document.querySelector('.sign-in-container');
+    const signUpContainer = document.querySelector('.sign-up-container');
+
     function toggleForm() {
       container.classList.toggle('active');
+    }
+
+    function toggleMobileForm() {
+      if (window.innerWidth <= 768) {
+        if (signInContainer.style.display === 'none') {
+          signInContainer.style.display = 'block';
+          signUpContainer.style.display = 'none';
+          mobileToggle.textContent = 'Switch to Sign Up';
+        } else {
+          signInContainer.style.display = 'none';
+          signUpContainer.style.display = 'block';
+          mobileToggle.textContent = 'Switch to Sign In';
+        }
+      } else {
+        toggleForm();
+      }
+    }
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) {
+        signInContainer.style.display = '';
+        signUpContainer.style.display = '';
+        mobileToggle.textContent = 'Switch to Sign Up';
+      }
+    });
+
+    // Validation Functions
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validateName(name) {
+      return name.trim().length >= 3;
+    }
+
+    function validatePassword(password) {
+      const requirements = {
+        length: password.length >= 8,
+        uppercase: /[A-Z]/.test(password),
+        lowercase: /[a-z]/.test(password),
+        number: /\d/.test(password),
+        special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+      };
+      return requirements;
+    }
+
+    function showError(elementId, message) {
+      const errorElement = document.getElementById(elementId);
+      errorElement.textContent = message;
+      errorElement.style.display = 'block';
+    }
+
+    function hideError(elementId) {
+      const errorElement = document.getElementById(elementId);
+      errorElement.textContent = '';
+      errorElement.style.display = 'none';
+    }
+
+    function updatePasswordStrength(requirements) {
+      const strengthFill = document.getElementById('strength-fill');
+      const strengthText = document.getElementById('strength-text');
+      
+      // Count how many requirements are met
+      const metRequirements = Object.values(requirements).filter(req => req).length;
+      const totalRequirements = Object.keys(requirements).length;
+      
+      // Calculate strength percentage
+      const strengthPercentage = (metRequirements / totalRequirements) * 100;
+      
+      // Update the strength bar width
+      strengthFill.style.width = strengthPercentage + '%';
+      
+      // Update color and text based on strength
+      let strengthLevel = '';
+      let color = '';
+      
+      if (metRequirements === 0) {
+        strengthLevel = 'Password Strength';
+        color = '#e0e0e0';
+      } else if (metRequirements <= 2) {
+        strengthLevel = 'Weak';
+        color = '#ff4444';
+      } else if (metRequirements <= 3) {
+        strengthLevel = 'Fair';
+        color = '#ffaa00';
+      } else if (metRequirements <= 4) {
+        strengthLevel = 'Good';
+        color = '#88cc00';
+      } else {
+        strengthLevel = 'Strong';
+        color = '#00aa00';
+      }
+      
+      strengthFill.style.backgroundColor = color;
+      strengthText.textContent = strengthLevel;
+      strengthText.style.color = color;
+    }
+
+    // Real-time validation for signup form
+    document.getElementById('signup-name').addEventListener('input', function() {
+      const name = this.value;
+      if (name.length === 0) {
+        hideError('signup-name-error');
+      } else if (!validateName(name)) {
+        showError('signup-name-error', 'Name must be at least 3 characters long');
+      } else {
+        hideError('signup-name-error');
+      }
+    });
+
+    document.getElementById('signup-email').addEventListener('input', function() {
+      const email = this.value;
+      if (email.length === 0) {
+        hideError('signup-email-error');
+      } else if (!validateEmail(email)) {
+        showError('signup-email-error', 'Please enter a valid email address with @');
+      } else {
+        hideError('signup-email-error');
+      }
+    });
+
+    document.getElementById('signup-password').addEventListener('input', function() {
+      const password = this.value;
+      const requirements = validatePassword(password);
+      updatePasswordStrength(requirements);
+      
+      const allValid = Object.values(requirements).every(req => req);
+      if (password.length === 0) {
+        hideError('signup-password-error');
+        // Reset strength indicator when password is empty
+        document.getElementById('strength-fill').style.width = '0%';
+        document.getElementById('strength-text').textContent = 'Password Strength';
+        document.getElementById('strength-text').style.color = '#6c757d';
+      } else if (!allValid) {
+        showError('signup-password-error', 'Password does not meet strength requirements');
+      } else {
+        hideError('signup-password-error');
+      }
+    });
+
+    // Real-time validation for signin form
+    document.getElementById('signin-email').addEventListener('input', function() {
+      const email = this.value;
+      if (email.length === 0) {
+        hideError('signin-email-error');
+      } else if (!validateEmail(email)) {
+        showError('signin-email-error', 'Please enter a valid email address with @');
+      } else {
+        hideError('signin-email-error');
+      }
+    });
+
+    // Password visibility toggle functionality
+    function togglePasswordVisibility(passwordId, toggleId) {
+      const passwordInput = document.getElementById(passwordId);
+      const toggleButton = document.getElementById(toggleId);
+      const eyeIcon = toggleButton.querySelector('.eye-icon');
+      const eyeOffIcon = toggleButton.querySelector('.eye-off-icon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.style.display = 'none';
+        eyeOffIcon.style.display = 'block';
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.style.display = 'block';
+        eyeOffIcon.style.display = 'none';
+      }
+    }
+
+    // Add event listeners for password toggle buttons
+    document.getElementById('signin-password-toggle').addEventListener('click', function() {
+      togglePasswordVisibility('signin-password', 'signin-password-toggle');
+    });
+
+    document.getElementById('signup-password-toggle').addEventListener('click', function() {
+      togglePasswordVisibility('signup-password', 'signup-password-toggle');
+    });
+
+    // Appwrite Setup
+    const client = new Appwrite.Client();
+    client.setEndpoint('https://fra.cloud.appwrite.io/v1') 
+          .setProject('689063950013e981c422');
+
+    const account = new Appwrite.Account(client);
+
+    // Form submission handling
+    document.getElementById('signin-btn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('signin-email').value;
+      const password = document.getElementById('signin-password').value;
+      
+      // Validate before submission
+      let isValid = true;
+      
+      if (!email) {
+        showError('signin-email-error', 'Email is required');
+        isValid = false;
+      } else if (!validateEmail(email)) {
+        showError('signin-email-error', 'Please enter a valid email address with @');
+        isValid = false;
+      }
+      
+      if (!password) {
+        showError('signin-password-error', 'Password is required');
+        isValid = false;
+      }
+      
+      if (!isValid) return;
+      
+      try {
+        // First, try deleting existing sessions
+        await account.deleteSessions();
+      } catch (_) {
+        // ignore if no session
+      }
+
+      try {
+        await account.createEmailSession(email, password);
+        showAuthMessage('Logged in successfully!', 'success');
+        window.location.href = 'home.html';
+      } catch (error) {
+        showAuthMessage(error.message, 'error');
+      }
+    });
+
+    document.getElementById('signup-btn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      
+      // Validate before submission
+      let isValid = true;
+      
+      if (!name) {
+        showError('signup-name-error', 'Name is required');
+        isValid = false;
+      } else if (!validateName(name)) {
+        showError('signup-name-error', 'Name must be at least 3 characters long');
+        isValid = false;
+      }
+      
+      if (!email) {
+        showError('signup-email-error', 'Email is required');
+        isValid = false;
+      } else if (!validateEmail(email)) {
+        showError('signup-email-error', 'Please enter a valid email address with @');
+        isValid = false;
+      }
+      
+      if (!password) {
+        showError('signup-password-error', 'Password is required');
+        isValid = false;
+      } else {
+        const requirements = validatePassword(password);
+        const allValid = Object.values(requirements).every(req => req);
+        if (!allValid) {
+          showError('signup-password-error', 'Password must meet all requirements below');
+          isValid = false;
+        }
+      }
+      
+      if (!isValid) return;
+      
+      try {
+        await account.create('unique()', email, password, name);
+        await account.createVerification('http://localhost:5500/verify.html');
+        showAuthMessage('Account created! Check your email for verification.', 'success');
+      } catch (error) {
+        showAuthMessage(error.message, 'error');
+      }
+     });
+
+    function showAuthMessage(message, type = 'info') {
+      const msg = document.createElement('div');
+      msg.className = `auth-message ${type}`;
+      msg.textContent = message;
+      Object.assign(msg.style, {
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        backgroundColor: type === 'error' ? '#ff4d4f' : '#4CAF50',
+        color: '#fff',
+        padding: '12px 18px',
+        borderRadius: '6px',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+        zIndex: 1000
+      });
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 4000);
     }
   </script>
 </body>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home</title>
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.1"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="message">Checking session...</h1>
+  <button id="logoutBtn" style="display: none;">Logout</button>
+
+  <script>
+    const client = new Appwrite.Client();
+    client
+      .setEndpoint('https://fra.cloud.appwrite.io/v1')
+      .setProject('689063950013e981c422');
+
+    const account = new Appwrite.Account(client);
+
+    async function checkSession() {
+      try {
+        const user = await account.get();
+        document.getElementById('message').textContent = `Hello, ${user.name}`;
+        document.getElementById('logoutBtn').style.display = 'block';
+      } catch (error) {
+        window.location.href = 'index.html';
+      }
+    }
+
+    async function logout() {
+      try {
+        await account.deleteSession('current');
+        window.location.href = 'index.html';
+      } catch (error) {
+        alert('Logout failed');
+      }
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+
+    checkSession();
+  </script>
+</body>
+</html>
+
